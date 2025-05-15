@@ -1,8 +1,0 @@
-<h3>Warning!</h3>
-<p>Deactivating this department will affect all employees linked to it. Please reassign them first.</p>
-
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirm Deactivate</button>
-</form>
-<a href="{% url 'dashboard' %}">Cancel</a>

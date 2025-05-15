@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Confirm Inactivation</title></head>
+<body>
+    <h2>Confirm Department Inactivation</h2>
+    <p><strong>Warning:</strong> Making this department inactive will affect linked employees.</p>
+    {% if linked_employees %}
+        <ul>{% for emp in linked_employees %}<li>{{ emp.name }}</li>{% endfor %}</ul>
+        <p>Please reassign these employees before proceeding.</p>
+        <a href="{% url 'department_list' %}">Back</a>
+    {% else %}
+        <form method="post">{% csrf_token %}
+            <p>Are you sure you want to inactivate <strong>{{ department.name }}</strong>?</p>
+            <button type="submit">Yes, Inactivate</button>
+            <a href="{% url 'department_list' %}">Cancel</a>
+        </form>
+    {% endif %}
+</body>
+</html>
